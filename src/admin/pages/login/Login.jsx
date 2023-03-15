@@ -29,7 +29,7 @@ const handleClick = (e)=>{
 
     adminLogin(dispatch,{username,password});
 
-(admin&&isadmin) && navigate("/adminHome")
+(admin&&isadmin) && navigate("/adminhome")
     
 }
 

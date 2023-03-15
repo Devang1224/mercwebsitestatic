@@ -38,7 +38,7 @@ useEffect(()=>{
           <div className="widgetSmUser">
             <span className="widgetSmUsername">{user.username}</span>
           </div>
-          <Link to="/adminHome/users" style={{textDecoration:'none'}}>
+          <Link to="/adminhome/users" style={{textDecoration:'none'}}>
           <button className="widgetSmButton">
             <Visibility className="widgetSmIcon" />  
             Display

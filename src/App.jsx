@@ -58,19 +58,19 @@ return (
     <Route path="/success" element={<Success/>}/>
     
     {/* for admin */}
-    <Route path="/adminLogin" element={<AdminLogin />}/>
+    <Route path="/adminlogin" element={<AdminLogin />}/>
 
     
     {
        isadmin && (
       <>
 
-          <Route exact path="/adminHome" element={<AdminHome />}/>
-          <Route path="/adminHome/users" element={<UserList />}/>
-          <Route path="/adminHome/newUser" element={<NewUser />}/>
-          <Route path="/adminHome/products" element={<AdminProductList />}/>
-          <Route path="/adminHome/product/:productId" element={<AdminProduct />}/>
-          <Route path="/adminHome/newproduct" element={<NewProduct />}/>
+          <Route exact path="/adminhome" element={<AdminHome />}/>
+          <Route path="/adminhome/users" element={<UserList />}/>
+          <Route path="/adminhome/newUser" element={<NewUser />}/>
+          <Route path="/adminhome/products" element={<AdminProductList />}/>
+          <Route path="/adminhome/product/:productId" element={<AdminProduct />}/>
+          <Route path="/adminhome/newproduct" element={<NewProduct />}/>
           <Route path="*" element={<PageNotFound/>} />  
 
       </>

@@ -56,7 +56,7 @@ const handleDelete = (id)=>{
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/adminHome/product/" + params.row._id}>
+            <Link to={"/adminhome/product/" + params.row._id}>
               <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutline

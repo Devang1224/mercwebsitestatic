@@ -15,7 +15,7 @@ const dispatch = useDispatch();
 const handleClick =()=>{
 
    adminSignOut(dispatch);
-  navigate('/adminLogin');
+  navigate('/adminlogin');
   
 }
 
@@ -24,7 +24,7 @@ const handleClick =()=>{
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-        <Link to={"/adminHome"} style={{textDecoration:"none"}}>
+        <Link to={"/adminhome"} style={{textDecoration:"none"}}>
             <span className="logo">Mercadmin</span>
         </Link>
         </div>

@@ -150,7 +150,7 @@ const handleClick = async (e)=>
     <div className="product">
       <div className="productTitleContainer">
         <h1 className="productTitle">Product</h1>
-        <Link to="/adminHome/newproduct">
+        <Link to="/adminhome/newproduct">
           <button className="productAddButton">Create</button>
         </Link>
       </div>
