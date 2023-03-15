@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 
-const BASE_URL = "https://mercwebsitebackend-1kn3.onrender.com"
+const BASE_URL = "https://mercwebsitebackend-1kn3.onrender.com/api"
 
 
 const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
