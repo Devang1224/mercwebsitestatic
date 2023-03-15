@@ -1,0 +1,22 @@
+.failedLogin {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .failedLogin h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .failedLogin p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+ 
