@@ -2,7 +2,7 @@ import { Instagram, Pinterest, Twitter ,Facebook, MailOutline ,Room,Phone } from
 import React from 'react'
 import styled from 'styled-components'
 import { mobile,mobile2,tablet} from '../responsive'
-
+import { Link } from 'react-router-dom'
 
 const Container = styled.div`
     display: flex;
@@ -87,7 +87,7 @@ const Payment= styled.img`
     width: 50%;
 `
 
-const AdminButto = styled.button`
+const AdminButton = styled.button`
     background-color: white;
     border-radius: 5px;
 `
