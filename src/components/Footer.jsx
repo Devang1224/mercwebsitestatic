@@ -87,6 +87,12 @@ const Payment= styled.img`
     width: 50%;
 `
 
+const AdminButto = styled.button`
+    background-color: white;
+    border-radius: 5px;
+`
+
+
 const Footer = () => {
   return (
       <Container>
@@ -146,6 +152,8 @@ const Footer = () => {
               <MailOutline style={{marginRight:"10px"}}/>contact@xyz.dev
             </ContactItem>
             <Payment src="https://i.ibb.co/Qfvn4z6/payment.png"/>
+            
+            <Link to={"/adminlogin"}><AdminButton></AdminButton></Link>
 
         </Right>
 

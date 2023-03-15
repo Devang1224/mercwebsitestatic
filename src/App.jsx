@@ -67,7 +67,7 @@ return (
 
           <Route exact path="/adminhome" element={<AdminHome />}/>
           <Route path="/adminhome/users" element={<UserList />}/>
-          <Route path="/adminhome/newUser" element={<NewUser />}/>
+          <Route path="/adminhome/newuser" element={<NewUser />}/>
           <Route path="/adminhome/products" element={<AdminProductList />}/>
           <Route path="/adminhome/product/:productId" element={<AdminProduct />}/>
           <Route path="/adminhome/newproduct" element={<NewProduct />}/>
