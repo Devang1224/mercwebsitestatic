@@ -16,7 +16,10 @@ import {
   addProductSuccess} from "./productRedux"
 
 import {
-    getUserFailure,getUserStart,getUserSuccess
+    getUserFailure,getUserStart,getUserSuccess,
+    deleteUserFailure,
+    deleteUserStart,
+    deleteUserSuccess
   } from "./allUsersRedux"
 import { clearCart } from "./cartRedux";
 
@@ -56,7 +59,7 @@ export const logout = async (dispatch)=>{
       dispatch(adminLoginSuccess(res.data));
     } 
     catch (err) {
-      console.log(err);
+
       dispatch(adminLoginFailure());
     }
 
@@ -95,7 +98,7 @@ export const logout = async (dispatch)=>{
       const res = await adminUserRequest.delete(`/products/${id}`);
       dispatch(deleteProductSuccess(id));
     } catch (err) {
-      console.log(err);
+
       dispatch(deleteProductFailure());
     }
   };
@@ -113,7 +116,7 @@ export const logout = async (dispatch)=>{
       const resid =res._id;
       dispatch(updateProductSuccess({resid,product})); // id:id,product:product
     } catch (err) {
-      console.log(err);
+
       dispatch(updateProductFailure());
     }
 
@@ -149,6 +152,22 @@ export const logout = async (dispatch)=>{
            dispatch(getUserFailure())
           }
 
+  }
+
+  export const deleteUser = async (user,dispatch)=>{
+
+    dispatch(deleteUserStart());
+    try{
+          const res = await adminUserRequest.delete(`/users/${user}`)
+          dispatch(deleteUserSuccess(user))
+    }
+    catch(err)
+    {
+      dispatch(deleteUserFailure());
+  
+    }
+  
+  
   }
 
   export const Clearcart = async (dispatch)=>

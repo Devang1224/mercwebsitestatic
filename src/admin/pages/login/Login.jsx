@@ -29,9 +29,18 @@ const handleClick = (e)=>{
 
     adminLogin(dispatch,{username,password});
 
-(admin&&isadmin) && navigate("/adminhome")
+
     
 }
+
+React.useEffect(() => {
+  if (isadmin) {
+    navigate('/adminhome');
+  }
+}, [isadmin, navigate]);
+
+
+
 
 const Error = styled.span`
   

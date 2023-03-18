@@ -6,6 +6,8 @@ import { getUsers } from "../../../redux/apiCalls";
 import { DataGrid } from '@mui/x-data-grid';
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
+import { DeleteOutline } from "@material-ui/icons";
+import { deleteUser } from "../../../redux/apiCalls";
 
 
 
@@ -25,7 +27,11 @@ export default function UserList() {
 
   const [data, setData] = useState(users);
 
-  
+  const handleDelete = (id) => {
+    
+    deleteUser(id,dispatch);
+
+};
   
   const columns = [
     { field: "_id", headerName: "ID", width: 200 },
@@ -47,6 +53,20 @@ export default function UserList() {
       field: "isAdmin",
       headerName: "Admin",
       width: 120,
+    },{
+      field: "action",
+      headerName: "Action",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <>
+            <DeleteOutline
+              className="userListDelete"
+              onClick={() => handleDelete(params.row._id)}
+            />
+          </>
+        );
+      },
     },
     
 
