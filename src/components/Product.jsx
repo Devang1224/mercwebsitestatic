@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { addProduct } from '../redux/cartRedux'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core'
 
 
 
@@ -79,7 +80,10 @@ navigate(`/product/${item._id}`)
 
     <Container onClick={handleClick}>
       <Circle/>
-      <Image src={item.img}/>
+      {
+        item.img?<Image src={item.img}/>:<CircularProgress/>
+      }
+      
 
       <Info>
       </Info>

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import {popularProducts} from '../data'
 import Product from  './Product'
 import axios from 'axios';
+import { CircularProgress } from '@material-ui/core'
 
 const Container =styled.div`
     padding: 20px;
@@ -11,6 +12,18 @@ const Container =styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
 `
+const Loader = styled.div`
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction:column;
+
+`
+
+
+
+
 
 const Products = ({cat,filters,sort}) => {
 
@@ -81,15 +94,28 @@ else{
 }
 
 },[sort])
-
+console.log(products);
   return (
     <Container>
-       {cat ? filteredProducts.map((item)=>(
+      {
+      (products && products.length === 0)
+      ?
+      <Loader>
+        <CircularProgress /><br/>
+        Loading Products...
+        </Loader>
+      :
+      (
+       cat ? filteredProducts.map((item)=>(
         <Product item={item} key={item.id}/>
        )) : products.slice(0,8).map((item)=>(
         <Product item={item} key={item.id}/>
        ))
-      }
+      
+      )
+      
+      
+    }
     </Container>
   )
 }
