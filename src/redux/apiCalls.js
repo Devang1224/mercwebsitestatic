@@ -61,6 +61,7 @@ export const logout = async (dispatch)=>{
     catch (err) {
 
       dispatch(adminLoginFailure());
+return err;
     }
 
 

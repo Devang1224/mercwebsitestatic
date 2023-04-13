@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-
 const BASE_URL = "https://mercwebsitebackend-1kn3.onrender.com/api"
 
 

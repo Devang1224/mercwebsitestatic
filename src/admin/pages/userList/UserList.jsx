@@ -27,9 +27,18 @@ export default function UserList() {
 
   const [data, setData] = useState(users);
 
-  const handleDelete = (id) => {
+  const handleDelete = (id,index) => {
     
-    deleteUser(id,dispatch);
+
+    if(index.isAdmin)
+     {
+       alert("you cannot delete the admin")
+     }
+     else{
+        deleteUser(id,dispatch).then(()=>{alert("user deleted")});
+
+     }
+
 
 };
   
@@ -62,7 +71,7 @@ export default function UserList() {
           <>
             <DeleteOutline
               className="userListDelete"
-              onClick={() => handleDelete(params.row._id)}
+              onClick={() => handleDelete(params.row._id,params.row)}
             />
           </>
         );

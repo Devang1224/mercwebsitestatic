@@ -86,7 +86,7 @@ const [password,setPassword] = useState("")
 const dispatch = useDispatch();
 const {isFetching,error} = useSelector((state)=>state.user);
 const isLogin = useSelector((state)=>state.user.isLogin)
-
+const e = useSelector((state)=>state.user.error)
 
 const handleClick = (e)=>{
 
@@ -94,8 +94,8 @@ const handleClick = (e)=>{
 
  login(dispatch,{username,password});
 
-
 }
+console.log(e);
 
   return (
        
@@ -118,11 +118,10 @@ const handleClick = (e)=>{
            color: 'white',
            cursor: 'pointer',
            marginBottom: '5px',
-          textAlign:'center',
-          textDecoration:'none',
-          borderRadius:'5px'
-
-          
+           textAlign:'center',
+           textDecoration:'none',
+           borderRadius:'5px',
+           cursor:"pointer"
           }}>
                Register
          </Link>

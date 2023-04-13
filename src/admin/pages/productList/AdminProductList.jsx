@@ -14,6 +14,7 @@ export default function AdminProductList() {
 const dispatch = useDispatch();
 const products = useSelector((state)=> state.product.products)
 
+
   useEffect(()=>{
 
     getProducts(dispatch);
@@ -22,7 +23,10 @@ const products = useSelector((state)=> state.product.products)
 
 const handleDelete = (id)=>{
   
-  deleteProduct(id,dispatch)
+  // deleteProduct(id,dispatch)
+
+alert("As it is in test mode, the product is not deleted from the database.")
+
 
 }
 
