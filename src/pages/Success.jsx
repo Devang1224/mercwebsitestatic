@@ -20,7 +20,6 @@ const navigate = useNavigate();
     const createOrder = async () => {
 
       try {
-        console.log(" Successssss!!!!! ");
         const res = await userRequest.post("/orders", {
           userId: currentUser._id,
           products: cart.products.map((item) => ({

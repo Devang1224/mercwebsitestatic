@@ -1,6 +1,6 @@
 import { Description, Send } from '@material-ui/icons'
 import styled from 'styled-components'
-import React from 'react'
+import React, { useRef } from 'react';
 import { mobile } from '../responsive'
 
 
@@ -11,6 +11,7 @@ const Container=styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow-y: hidden;
 `
 const Title=styled.h1`
 font-size: 70px;
@@ -27,7 +28,7 @@ const Desc=styled.div`
 
 
 `
-const InputContainer=styled.div`
+const InputContainer=styled.form`
 width: 50%;
 height: 40px;
 background-color: white;
@@ -41,6 +42,7 @@ const Input=styled.input`
 border: none;
 flex:8;
 padding-left: 20px;
+outline: none;
 `
 const Button=styled.button`
 
@@ -52,13 +54,20 @@ cursor: pointer;
 `
 
 const NewsLetter = () => {
+
+
+
+
+
+
+
   return (
       
     <Container>
         <Title>Newsletter</Title>
         <Desc>Get timely updates from your favorite products.</Desc>
         <InputContainer> 
-          <Input placeholder='Your Email'/>
+          <Input type="email" placeholder='Your Email'/>
           <Button>
             <Send/>
           </Button>

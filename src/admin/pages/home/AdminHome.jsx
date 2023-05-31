@@ -41,7 +41,7 @@ export default function AdminHome() {
             { name: MONTHS[item._id - 1], "Active User": item.total },
           ])
         );
-      } catch(err){console.log(err);}
+      } catch(err){}
     };
     getStats();
   }, [MONTHS]);

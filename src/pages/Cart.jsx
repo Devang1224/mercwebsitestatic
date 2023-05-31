@@ -40,8 +40,6 @@ justify-content: space-between;
 
 const TopButton = styled.button`
  
-
-
   padding: 10px;
   font-weight: 600;
   cursor: pointer;
@@ -84,6 +82,7 @@ const Bottom = styled.div`
 
 const Info = styled.div`
   flex: 3;
+
 
 `;
 
@@ -233,7 +232,7 @@ setPaymentData(res.data)
     }
     catch(err){
 
-console.log(err);
+
 navigate('/success', { state: { stripeData: paymentData, products: cart } });
 
     }

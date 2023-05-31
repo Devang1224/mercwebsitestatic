@@ -27,7 +27,6 @@ import { clearCart } from "./cartRedux";
 
 
 
-
 export const login = async(dispatch,user)=>{
 
     dispatch(loginStart());
@@ -37,15 +36,17 @@ export const login = async(dispatch,user)=>{
     }
     catch(err){
         dispatch(loginFailure())
+        return err;
     }
 }
+
 
 export const logout = async (dispatch)=>{
   dispatch(logOut())
 
 }
 
-// dom->apicalls->reduxre
+// dom->apicalls->redux
 
 
 

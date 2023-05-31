@@ -11,6 +11,7 @@ const Container =styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    overflow-y: hidden;
 `
 const Loader = styled.div`
   width: 100vw;
@@ -46,7 +47,6 @@ useEffect(()=>{
     }
    catch(err){
 
-   
    }
 
   } 
@@ -94,7 +94,7 @@ else{
 }
 
 },[sort])
-console.log(products);
+
   return (
     <Container>
       {

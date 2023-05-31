@@ -43,7 +43,7 @@ React.useEffect(()=>{
 React.useEffect(() => {
   if (isadmin) {
     navigate('/adminhome');
-  }console.log(isadmin);
+  }
 }, [isadmin, navigate]);
 
 

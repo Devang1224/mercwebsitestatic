@@ -28,11 +28,14 @@ const userSlice = createSlice({
         logOut:(state)=>{
             state.currentUser=null;
             state.isLogin = false
+        },
+        loginAsGuest:(state)=>{
+            state.isLogin=true;
         }
 
     }
 
     })
 
-  export const {loginStart,loginFailure,loginSuccess,logOut} = userSlice.actions  
+  export const {loginStart,loginFailure,loginSuccess,logOut,loginAsGuest} = userSlice.actions  
   export default userSlice.reducer;

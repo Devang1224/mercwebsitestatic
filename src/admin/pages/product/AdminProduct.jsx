@@ -70,7 +70,6 @@ const getStats = async ()=>{
  getStats()
 },[productId,MONTHS])
 
-console.log(pstats);
 
 const handleInput = (e)=>{
    
@@ -116,7 +115,6 @@ const handleClick = async (e)=>
   }, 
   (error) => {
 
-    console.log(error);
 
   }, 
   () => {

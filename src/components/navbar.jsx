@@ -10,7 +10,8 @@ import {logout}  from '../redux/apiCalls'
 //styled components
 const Container = styled.div`
 height: 60px;
-${mobile({height:"50px"})}
+${mobile({height:"50px"})};
+overflow-y: hidden;
 
 `
 

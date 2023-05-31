@@ -175,7 +175,6 @@ const handleQuantity = (type)=>{
 const handleClick=()=>{
     //update cart
 
-    
 if(!isLogined){
     navigate("/login");
     return;

@@ -13,7 +13,7 @@ display: flex;
 position:relative;
 overflow: hidden;
 ${mobile({display:"none"})}
-
+overflow-y: hidden;
 
 `
 

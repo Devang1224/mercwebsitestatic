@@ -5,6 +5,8 @@ import { login } from '../redux/apiCalls'
 import { mobile } from '../responsive'
 import { redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { loginAsGuest } from '../redux/userRedux'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -81,33 +83,49 @@ const Login = () => {
 
 const [username,setUsername] = useState("")
 const [password,setPassword] = useState("")
+const [errMessage,setErrMessage] = useState("")
 
 
 const dispatch = useDispatch();
 const {isFetching,error} = useSelector((state)=>state.user);
 const isLogin = useSelector((state)=>state.user.isLogin)
-const e = useSelector((state)=>state.user.error)
+const err = useSelector((state)=>state.user.error)
+  const navigate = useNavigate();
+
 
 const handleClick = (e)=>{
 
   e.preventDefault();
 
- login(dispatch,{username,password});
+login(dispatch,{username,password}).then((res)=>{
+ setErrMessage(res?.response?.data)
+
+})
+
 
 }
-console.log(e);
+
+const handleLoginAsGuest =()=>{
+ dispatch(loginAsGuest())
+ navigate("/")
+}
 
   return (
        
     <Container>
 
-    <Wrapper>
+     <Wrapper>
 
        <Title>Sign In</Title>
-       <Form>
-         <Input placeholder="username" onChange={(e)=>setUsername(e.target.value)} required/>
-         <Input type ="password" placeholder="password" onChange={(e)=>setPassword(e.target.value)} required/>
-         <Button onClick={handleClick} disabled={isFetching}>Login</Button>
+       <Form onSubmit={handleClick}>
+         <Input placeholder="username" onChange={(e)=>setUsername(e.target.value)} required maxLength="100"/>
+         <Input type ="password" placeholder="password" onChange={(e)=>setPassword(e.target.value)} required maxLength="100"/>
+         <Button type='submit'>Login</Button>
+
+         {
+          err && <h4 style={{color:"red"}}>{errMessage}</h4>
+         }
+        </Form>
 
          <Register>
          <Link to={"/register"} style={{
@@ -126,7 +144,10 @@ console.log(e);
                Register
          </Link>
          </Register>
-       </Form>
+       
+        
+      <span style={{cursor:"pointer"}} onClick={handleLoginAsGuest}>Login as Guest</span>
+
 
     </Wrapper>
 

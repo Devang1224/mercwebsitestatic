@@ -41,6 +41,7 @@ const Form = styled.form`
     min-width: 40%;
     margin: 20px 10px 0px 0px;
     padding: 10px;
+    
 ` 
  const Agreement = styled.span`
     font-size: 12px;
@@ -88,7 +89,7 @@ const response= await publicRequest.post('/auth/register', {
     navigate("/")
 }
 catch(err)
-{console.log(err);
+{
     setErrorMessage(err.message);
     return;
 }
@@ -104,22 +105,24 @@ catch(err)
            <Wrapper>
  
               <Title>Create An Account</Title>
-              <Form>
-                <Input  placeholder="name" required/>
+
+              <Form onSubmit={handleClick}>
+                <Input  placeholder="name" required />
                 <Input placeholder="last name" required/>
-                <Input name="username" placeholder="username" required value={username} onChange={(e)=>setUsername(e.target.value)}/>
-                <Input name="email" placeholder="email" required value={email} onChange={(e)=>setEmail(e.target.value)}/>
-                <Input name="password" placeholder="password" required value={password} onChange={(e)=>setPassword(e.target.value)}/>
-                <Input placeholder="confirm password" required onChange={(e)=>setConfirmPassword(e.target.value)}/>
+                <Input name="username" placeholder="username" value={username} onChange={(e)=>setUsername(e.target.value)} required maxLength="100"/>
+                <Input type ="email" name="email" placeholder="email"  value={email} onChange={(e)=>setEmail(e.target.value)} required maxLength="100"/>
+                <Input name="password" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)} pattern=".{8,}" required title="8 characters minimum" maxLength="100" />
+                <Input placeholder="confirm password" onChange={(e)=>setConfirmPassword(e.target.value)} required maxLength="100"/>
                
-                {errorMessage && <div style={{color:'red'}}>{errorMessage} Make Sure that your username and email are unique</div>
+                {errorMessage && <div style={{color:'red'}}> Make Sure that your username and email are unique</div>
 
                 }
                 <Agreement>By creating an account, I consent to the processing
                      of my personal data in accordance with the <b>PRIVACY POLICY</b></Agreement>
 
-                <Button onClick={handleClick}>Create</Button>
+                <Button type="submit" >Create</Button>
               </Form>
+
            </Wrapper>
 
       </Container>

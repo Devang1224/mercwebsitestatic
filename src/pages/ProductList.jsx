@@ -107,7 +107,7 @@ useEffect(() => {
           </Filter>
        </FilterContainer>
          <Products cat={cat} filters = {filter} sort={sort}/>
-       <Newsletter/>
+       <Newsletter/>a
        <Footer/>
     </Container>
 
