@@ -1,0 +1,232 @@
+
+
+.custom_swiper{
+    height:100%;
+    width:100%;
+}
+
+.single_swiper{
+  text-align:'center';
+}
+
+.single_swiper div{
+    width:100%; 
+    height:100%;
+    position:relative;
+}
+
+.single_swiper div img{
+    object-fit:cover;
+    width:100%;
+    height:100%;
+}
+
+.single_swiper div div{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+}
+
+.single_swiper div div h1{
+    position:absolute;
+    top:40%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:50;
+    color:white;
+    font-size:60px;
+    min-width:70%;
+    font-weight:300;
+    text-align: center;
+}
+
+/* Button */
+
+
+.cta {
+    border: none;
+    background: none;
+    position:absolute;
+    top:60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    cursor: pointer;
+  }
+  
+  .cta span {
+    padding-bottom: 7px;
+    letter-spacing: 4px;
+    font-size: 14px;
+    padding-right: 15px;
+    text-transform: uppercase;
+  }
+  
+  .cta svg {
+    transform: translateX(-8px);
+    transition: all 0.3s ease;
+  }
+  
+  .cta:hover svg {
+    transform: translateX(0);
+  }
+  
+  .cta:active svg {
+    transform: scale(0.9);
+  }
+  
+  .hover-underline-animation {
+    position: relative;
+    color: white;
+    padding-bottom: 20px;
+  }
+  
+  .hover-underline-animation:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .cta:hover .hover-underline-animation:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+/* brands slider */
+  .brands_section{
+     max-width: 100%;
+     height: 150px;
+     padding: 20px;
+     display: flex; 
+     align-items: center;
+     overflow: hidden;
+     white-space: nowrap;
+  }
+
+ .brands_section:hover .brands{
+  animation-play-state: paused;
+ } 
+
+ @keyframes brandSlider {
+  from{
+     transform: translateX(0);
+    }
+  to{
+      transform: translateX(-100%);
+    }
+
+  }
+
+  .brands{
+    height: 100px;
+    animation: 25s brandSlider infinite linear;
+    display: flex; 
+     align-items: center;
+
+  }
+  .brands_section img{
+
+    margin:0 40px;
+    width: 140px;
+    height: 120px;
+    object-fit: contain;
+  }
+
+   /* responsiveness */
+
+   @media only screen and (max-width:1060px)
+   {
+    .single_swiper div div h1{
+      font-size: 48px;
+    }
+
+   }
+   
+
+  @media only screen and (max-width:880px)
+{
+  .single_swiper div div h1{
+  font-size: 45px;
+}
+}
+
+@media only screen and (max-width:760px)
+{
+  .single_swiper div div h1{
+      font-size: 30px;
+   }
+
+   .cta span {
+    font-size: 10px;
+    padding-right: 15px;
+   }
+
+   .hover-underline-animation {
+    padding-bottom: 20px;
+  }
+
+  .brands_section{
+    height: 120px;
+    padding: 10px;
+ }
+
+  .brands_section img{
+
+    margin:0 40px;
+    width: 90px;
+    height: 70px;
+    object-fit: contain;
+  }
+
+
+}
+
+@media only screen and (max-width:440px)
+{
+  .single_swiper div div h1{
+      font-size: 25px;
+   }
+
+   .cta span {
+    font-size: 7px;
+   }
+
+
+  .brands_section{
+    max-width: 100%;
+    height: 100px;
+ }
+
+  .brands_section img{
+
+    margin:0 40px;
+    width: 80px;
+    height:60px;
+    object-fit: contain;
+  }
+  .cta {
+    border: none;
+    background: none;
+    position:absolute;
+    top:60%;
+    left: 50%;
+    transform: translate(-40%,-50%);
+    cursor: pointer;
+  }
+
+}
+
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+

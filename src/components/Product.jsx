@@ -6,25 +6,26 @@ import { addProduct } from '../redux/cartRedux'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core'
+import { mobile, mobile2, mobile4 } from '../responsive'
 
 
 
-const Info = styled.div`
-opacity: 0;
-width: 100%;
-height: 100%;
-position: absolute;
-top: 0;
-left: 0;
-background-color: rgba(0,0,0,0.2);
-z-index: 3;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: all 0.5s ease;
-cursor: pointer;
+// const Info = styled.div`
+// opacity: 0;
+// width: 100%;
+// height: 100%;
+// position: absolute;
+// top: 0;
+// left: 0;
+// background-color: rgba(0,0,0,0.2);
+// z-index: 3;
+// display: flex;
+// align-items: center;
+// justify-content: center;
+// transition: all 0.5s ease;
+// cursor: pointer;
 
-`
+// `
 
 const Container =styled.div`
     
@@ -35,29 +36,27 @@ const Container =styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f5fbfd;
+    overflow: hidden;
     position: relative;
+    cursor:pointer;
+   ${mobile2({width:`25vw`,maxHeight:`200px`,minWidth:`180px`})}
+   ${mobile4({width:`25vw`,maxHeight:`250px`,minWidth:`150px`,margin:`2px`})}
+   ${mobile({maxHeight:"150px",minWidth:"100px"})}
 
-
-  
-    &:hover ${Info}{      
-        opacity: 1;
-    }
 
 `
-const Circle = styled.div`
-width: 200px;
-height: 200px;
-border-radius: 50%;
-background-color: white;
-position: absolute;
 
-`
 const Image = styled.img`
-height: 75%;
+height: 90%;
+box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 z-index: 2;
+transform: scale(1.3);
+transition: transform 0.6s ease;
 
+&:hover{
+  transform: scale(1.5);
 
+}
 `
 
 
@@ -79,14 +78,11 @@ navigate(`/product/${item._id}`)
     // <Link to={`/product/${item._id}`}>
 
     <Container onClick={handleClick}>
-      <Circle/>
-      {
-        item.img?<Image src={item.img}/>:<CircularProgress/>
+      { 
+        item.img?<Image src={item.img[0]}/>:<CircularProgress/>
       }
       
 
-      <Info>
-      </Info>
     </Container>
 
 

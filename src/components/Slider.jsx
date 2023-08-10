@@ -163,7 +163,7 @@ const handleClick=(direc)=>{
   return (
 
       <Container>
-          <Arrow direction="left" onClick={()=>handleClick("left")}>
+           <Arrow direction="left" onClick={()=>handleClick("left")}>
             <ArrowLeftOutlined/>
           </Arrow>
         
@@ -189,7 +189,9 @@ const handleClick=(direc)=>{
           
           <Arrow direction="right" onClick={()=>handleClick("right")}>
             <ArrowRightOutlined/>
-          </Arrow>
+          </Arrow> 
+
+
       </Container>
   )
 }

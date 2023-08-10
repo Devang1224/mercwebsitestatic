@@ -5,7 +5,7 @@ import Announcement from '../components/Announcement'
 import Products from '../components/Products'
 import Newsletter from '../components/NewsLetter'
 import Footer from '../components/Footer'
-import { mobile } from '../responsive'
+import { mobile, mobile2, mobile3 } from '../responsive'
 import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -20,11 +20,12 @@ margin: 20px;
 const FilterContainer = styled.div`
 display: flex;
 justify-content: space-between;
+width: 100%;
 
 `
 const Filter = styled.div`
 margin: 20px;
-${mobile({margin:"0px 20px",display:"flex",flexDirection:"column"})}
+${mobile3({margin:"0px 20px",display:"flex",flexDirection:"column"})}
 
 `
 
@@ -33,18 +34,22 @@ font-size: 20px;
 font-weight: 600;
 margin-right: 20px;
 ${mobile({marginRight:"0px"})}
+${mobile2({margin:"0px",fontSize:"15px"})}
+
 
 `
 const Select = styled.select`
 padding: 10px;
 margin-right: 20px;
-${mobile({margin:"10px 0px"})}
-
+${mobile3({margin:"10px 5px",height: `30px`,fontSize:"10px",border:`none`})}
 
 `
+const SelectContainer = styled.div`
+  min-width: 200px;
+`
+
 const Option = styled.option`
     
-
 `
 
 
@@ -79,6 +84,7 @@ useEffect(() => {
        <FilterContainer>
           <Filter>
               <FilterText>Filter Products:</FilterText>
+              <SelectContainer>
               <Select name = "color" onChange={handleFilters}>
                 <Option disabled selected>color</Option>
                 <Option>white</Option>
@@ -96,6 +102,7 @@ useEffect(() => {
                 <Option>L</Option>
                 <Option>XL</Option>
               </Select>
+            </SelectContainer>
           </Filter>
           <Filter>
               <FilterText>Sort Products:</FilterText>
@@ -107,7 +114,7 @@ useEffect(() => {
           </Filter>
        </FilterContainer>
          <Products cat={cat} filters = {filter} sort={sort}/>
-       <Newsletter/>a
+       <Newsletter/>
        <Footer/>
     </Container>
 

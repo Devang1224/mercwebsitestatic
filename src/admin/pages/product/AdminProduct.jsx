@@ -50,25 +50,26 @@ const MONTHS = useMemo(
     ],[]
   )
 
-useEffect(()=>{
+// useEffect(()=>{
 
-const getStats = async ()=>{
+// const getStats = async ()=>{
 
-    try
-    {
-        const res = await adminUserRequest.get("/orders/income?pid="+productId);
-        const list = res.data.sort((a,b)=>a._id - b._id)
-        list.map((item)=>
-        setPstats((prev)=>[  
-            ...prev,{name:MONTHS[item._id-1],Sales:item.total}
-        ]))
-    }
-    catch(err){}
+//     try
+//     {
+//         const res = await adminUserRequest.get("/orders/income?pid="+productId);
+//         console.log(res);
+//         const list = res.data.sort((a,b)=>a._id - b._id)
+//         list.map((item)=>
+//         setPstats((prev)=>[  
+//             ...prev,{name:MONTHS[item._id-1],Sales:item.total}
+//         ]))
+//     }
+//     catch(err){}
         
    
-}
- getStats()
-},[productId,MONTHS])
+// }
+//  getStats()
+// },[productId,MONTHS])
 
 
 const handleInput = (e)=>{
@@ -153,9 +154,9 @@ const handleClick = async (e)=>
         </Link>
       </div>
       <div className="productTop">
-          <div className="productTopLeft">
+          {/* <div className="productTopLeft">
               <Chart data={pstats} dataKey="Sales" title="Sales Performance"/>
-          </div>
+          </div> */}
           <div className="productTopRight">
               <div className="productInfoTop">
                   <img src={product.img} alt="" className="productInfoImg" />

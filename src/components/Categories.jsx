@@ -5,9 +5,9 @@ import { mobile } from '../responsive'
 import CategoryItem from './CategoryItem'
 
 const Container = styled.div`
+ box-sizing: border-box;
  display: flex;
- padding:20px;
- width:100vw;
+ width:100%;
  justify-content: space-between;
 ${mobile({padding:"0",flexDirection:"column"})}
 

@@ -16,19 +16,7 @@ return css`
 }
 
 
-export const mobile = (props)=>{
-     
-    return css`
-    
-    @media only screen and (max-width:570px)
-    {
-          ${props}
-    }
-    
-    `
-    
-    }
-   
+
     export const tablet1 = (props)=>{
      
       return css`
@@ -41,6 +29,32 @@ export const mobile = (props)=>{
       `
       
       }
+
+      export const tablet3 = (props)=>{
+     
+            return css`
+            
+            @media only screen and (max-width:1400px)
+            {
+                  ${props}
+            }
+            
+            `
+            
+            }
+      export const tablet2 = (props)=>{
+     
+            return css`
+            
+            @media only screen and (max-width:880px)
+            {
+                  ${props}
+            }
+            
+            `
+            
+            }
+
   export const mobile2 = (props)=>{
       return css`
       
@@ -64,3 +78,30 @@ export const mobile = (props)=>{
       `
   }
 
+
+  export const mobile4 = (props)=>{
+      
+      return css`
+      
+      @media only screen and (max-width:480px)
+      {
+            ${props}
+      }
+      
+      `
+  }
+
+
+  export const mobile = (props)=>{
+     
+      return css`
+      
+      @media only screen and (max-width:410px)
+      {
+            ${props}
+      }
+      
+      `
+      
+}
+     

@@ -29,6 +29,7 @@ const userSlice = createSlice({
         },
         adminFetchingStop: (state)=>{
           state.isFetching = false;
+
         }
       }
 

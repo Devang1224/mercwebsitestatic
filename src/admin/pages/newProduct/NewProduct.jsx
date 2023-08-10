@@ -6,14 +6,18 @@ import { addProduct } from "../../../redux/apiCalls";
 import { useDispatch } from "react-redux";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
+import { CircularProgress } from '@material-ui/core'
 
 
 export default function NewProduct() {
 
 
 const [inputs,setInputs] = useState([])
-const [file,setFile] = useState(null)
+const [urls,setUrls] = useState([])
+const[file,setFile] = useState([])
 const [cat,setCat] = useState([])
+const[size,setSize] = useState([])
+const[isCreating,setIsCreating] = useState(false)
 const dispatch = useDispatch()
 
 
@@ -27,6 +31,10 @@ setInputs((prev)=>{
 
 }
 
+const handleSize =(e)=>{
+  setSize(e.target.value.split(","));
+}
+
 const handleCategory = (e)=>{
 
 setCat(e.target.value.split(","));
@@ -34,20 +42,30 @@ setCat(e.target.value.split(","));
 }
 
 
-const handleClick = async (e)=>{
+const handleFile = (e)=>{
 
+  for(let i=0;i<e.target.files.length;i++)
+    { console.log(e.target.files[i]);
+      setFile((prev)=>[...prev,e.target.files[i]]);
+    }
+}
+
+const handleFileUploadButton=(e)=>{
   e.preventDefault();
+  for(let i=0;i<file.length;i++)
+   handleFileUpload(file[i])
+}
 
-  const fileName = new Date().getTime() + file.name;
- 
+const handleFileUpload= async (e)=>{
+
+
+const fileName = new Date().getTime() + e.name;
 const storage = getStorage(app);
-
 const storageRef = ref(storage,fileName);
+const uploadTask = uploadBytesResumable(storageRef, e);
 
-const uploadTask = uploadBytesResumable(storageRef, file);
 
-
-uploadTask.on('state_changed', 
+await uploadTask.on('state_changed', 
   (snapshot) => {
 
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -67,14 +85,37 @@ uploadTask.on('state_changed',
   () => {
 
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-      const product =  {...inputs,img:downloadURL,categories:cat};
-      addProduct(product,dispatch);
+           setUrls((prev)=>[...prev,downloadURL])
+           console.log(downloadURL);
     });
   }
 );
 
 
 }
+
+const handleClick = async (e)=>{
+  e.preventDefault();
+  setIsCreating(true);
+
+  try{
+  const product =  {...inputs,img:urls,categories:cat,size:size};
+  await addProduct(product,dispatch);
+
+}catch(err)
+{
+  console.log(err.message);
+}
+finally{
+  setIsCreating(false);
+  setCat([]);
+  setFile([]);
+  setSize([]);
+  setUrls([])
+}
+
+}
+
 
 
 
@@ -90,22 +131,31 @@ uploadTask.on('state_changed',
       <form className="addProductForm">
         <div className="addProductItem">
           <label>Image</label>
-          <input type="file" id="file" onChange={e=>setFile(e.target.files[0])}/>
+          <input type="file" id="file" multiple onChange={handleFile} required />
+           <span><button onClick={handleFileUploadButton}>Upload</button></span>
         </div>
         <div className="addProductItem">
           <label>Title</label>
-          <input name="title" type="text" placeholder="Apple Airpods"  onChange={handleChange}/>
+          <input name="title" type="text" placeholder="Apple Airpods" required onChange={handleChange} />
         </div>
         <div className="addProductItem">
           <label>Stock</label>
-            <select name="inStock" onChange={handleChange}>
+            <select name="inStock" onChange={handleChange} >
               <option value="true">Yes</option>
               <option value="false">No</option>
             </select>
         </div>
         <div className="addProductItem">
           <label>Categories</label>
-          <input name="category" type="text" placeholder="jeans" onChange={handleCategory}/>
+          <input name="category" type="text" placeholder="men,jeans" onChange={handleCategory} value={cat}/>
+        </div>
+        <div className="addProductItem">
+          <label>Size</label>
+          <input name="Size" type="text" placeholder="size" onChange={handleSize} value={size}/>
+        </div>
+        <div className="addProductItem">
+          <label>Color</label>
+          <input name="color" type="text" placeholder="color" onChange={handleChange} />
         </div>
         <div className="addProductItem">
           <label>Description</label>
@@ -113,10 +163,12 @@ uploadTask.on('state_changed',
         </div>
         <div className="addProductItem">
           <label>Price</label>
-          <input name="price" type="number" placeholder="100" onChange={handleChange}/>
+          <input name="price" type="number" placeholder="100" onChange={handleChange} />
         </div>
-        
-        <button onClick = {e=>handleClick(e)} className="addProductButton">Create</button>
+        {
+          isCreating?(<CircularProgress/>):(<button onClick={handleClick} className="addProductButton">Create</button>)
+        }
+
       </form>
     </div>
     </div>

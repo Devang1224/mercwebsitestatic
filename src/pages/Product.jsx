@@ -5,7 +5,7 @@ import Navbar from '../components/navbar'
 import NewsLetter from '../components/NewsLetter'
 import Footer from '../components/Footer'
 import { Remove,Add } from '@material-ui/icons'
-import { mobile } from '../responsive'
+import { mobile, tablet } from '../responsive'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useState,useEffect } from 'react'
 import { publicRequest } from '../requestMethod'
@@ -19,24 +19,60 @@ const Container = styled.div`
 const Wrapper = styled.div`
     padding: 50px;
     display: flex;
-    ${mobile({flexDirection:"column" , padding:"10px"})}
+    ${tablet({flexDirection:"column",justifyContent:`space-around`,alignItems:`center`, padding:"10px"})}
 
 `
 const ImgContainer = styled.div`
     flex: 1;
+    align-items: center;
+    justify-content: center;
+    max-width:30vw;
+    min-width:22rem;
+    ${tablet({order:-1})}
+    ${mobile({minWidth:"63vw"})}
+    
 
 `
+
+
 const Image = styled.img`
     width: 100%;
-    height: 90vh;
+    height: 100%;
     object-fit: contain;
-${mobile({height:"40vh"})}
+${mobile({height:"100%"})}
 
 `
+
+const ImageSelectorContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-width:7vw;
+    min-width:60px;
+    height: 60%;
+    ${tablet({padding:`10px`,width:`100%`,flexDirection:`row`,justifyContent:`center`})}
+
+`
+const ImageSelect = styled.img`
+   width:90%;
+   object-fit: contain;
+   cursor:pointer;
+
+   opacity: ${(props) => (props.isSelected ? '0.6' : '1')};
+   
+   &:hover{
+    opacity: 0.6;
+   }
+`
+
+
 const InfoContainer = styled.div`
     flex: 1;
     padding: 0 50px;
-${mobile({padding:"10px"})}
+${tablet({padding:"10px",marginTop:"10px",fontSize:"15px"})}
+${mobile({padding:"10px",marginTop:"10px",fontSize:"10px"})}
+
 
 `
 
@@ -50,7 +86,12 @@ const Desc = styled.p`
 
 const Price = styled.div`
     font-weight: 100;
-    font-size: 40px;
+    font-size: 30px;
+${tablet({fontSize:"20px"})}
+${mobile({fontSize:"13px"})}
+
+
+
 `
 
 const FilterContainer = styled.div`
@@ -100,6 +141,7 @@ const AmountContainer = styled.div`
     display: flex;
     align-items: center;
     font-weight: 700;
+    padding-right:10px;
 `
 const Amount = styled.span`
     width: 30px;
@@ -118,12 +160,10 @@ const Button = styled.button`
     background-color: white;
     cursor: pointer;
     font-weight: 500;
-
+    min-width:100px;
     &:hover{
         background-color: #f8f4f4;
     }
-
-    
 `
 
 
@@ -138,6 +178,7 @@ const Product = () => {
     const dispatch = useDispatch()
      const isLogined = useSelector((state)=>state.user.isLogin)
     const navigate = useNavigate();
+    const [selectedImage,setSelectedImage] = useState("")
 
 
     useEffect(() => {
@@ -150,7 +191,9 @@ const Product = () => {
 
         try{
             const res = await publicRequest.get("/products/find/"+id)
-            setProducts(res.data)
+
+            setProducts(res.data);
+            setSelectedImage(res.data.img[0]);
         }
         catch(err){
 
@@ -191,11 +234,11 @@ if(!isLogined){
 }
 
 const handleChange=(e)=>{
-
-setSize(e.target.value)
-
-
+  setSize(e.target.value)
 }
+
+
+
   return (
 
     <Container>
@@ -203,26 +246,23 @@ setSize(e.target.value)
       <Announcement/>
         
         <Wrapper>
+            <ImageSelectorContainer>
+                { 
+                    products?.img?.map((item)=>
+                     <ImageSelect src={item} isSelected={selectedImage===item}onClick={()=>{setSelectedImage(item)}}/>
+                    )
+                }
+            </ImageSelectorContainer>
             <ImgContainer>
-                <Image src={products.img}/>
+                <Image src={selectedImage}/>
             </ImgContainer>
             <InfoContainer>
                 <Title>{products.title}</Title>
-                <Desc>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                     Quod cumque eveniet dolorem porro. At eveniet id ex odit obcaecati cupiditate. 
-                     Aliquid sit ullam minus! Id provident corrupti enim. Minima, magnam.</Desc>
-                <Price>${products.price}</Price>
+                <Desc>{products.desc}</Desc>
+                <Price>Price: ${products.price}</Price>
 
 
                 <FilterContainer>
-                    <Filter>
-                        <FilterTitle>Color :</FilterTitle>
-
-                       {products.color?.map((c)=>(
-                         <FilterColor color={c} key={c} onClick={()=>setColor(c)}/>
-                       ))}
-
-                    </Filter>
                     <Filter>
                         <FilterTitle>Size</FilterTitle>
                         <FilterSize onChange={handleChange}>

@@ -1,7 +1,7 @@
 import axios from "axios";
+// https://mercwebsitebackend-1kn3.onrender.com/api
 
-const BASE_URL = "https://mercwebsitebackend-1kn3.onrender.com/api"
-
+const BASE_URL = "https://mercwebsitebackend-1kn3.onrender.com/api";
 
 const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
 const currentUser = user && JSON.parse(user).currentUser;

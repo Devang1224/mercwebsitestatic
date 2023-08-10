@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {Badge} from "@material-ui/core"
 import {Search,ShoppingCartOutlined} from '@material-ui/icons'
-import {mobile} from '../responsive' 
+import {mobile, mobile2} from '../responsive' 
 import {useSelector,useDispatch} from 'react-redux'
 import { Link } from 'react-router-dom'
 import {logout}  from '../redux/apiCalls'
@@ -49,6 +49,8 @@ padding: 5px;
 const Input = styled.input`
   border: none;
 ${mobile({width:"50px"})}
+${mobile2({width:"50px"})};
+
   
 `
 
@@ -58,12 +60,15 @@ ${mobile({width:"50px"})}
 const Center = styled.div`
 flex: 1;
 text-align: center;
+${mobile({display:`flex`,justifyContent:"center"})}
 
 `
 const Logo = styled.h1`
 font-weight: bold;
 cursor: pointer;
 ${mobile({fontSize:"24px"})}
+${mobile2({fontSize:"24px"})}
+
 
 `
 
@@ -75,7 +80,7 @@ flex: 1;
 display: flex;
 align-items: center;
 justify-content: flex-end;
-${mobile({flex:"2",justifyContent:"center"})}
+${mobile({flex:"1",marginRight:"10px"})}
 
 `
 

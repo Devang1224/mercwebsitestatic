@@ -5,12 +5,19 @@ import {popularProducts} from '../data'
 import Product from  './Product'
 import axios from 'axios';
 import { CircularProgress } from '@material-ui/core'
+import { mobile, mobile2, mobile4 } from '../responsive'
 
 const Container =styled.div`
     padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+     display: grid;
+     grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+   ${mobile2({gridTemplateColumns:`repeat(auto-fill,minmax(170px,1fr))`,justifyItems: `center`})}
+   ${mobile4({padding:`5px`,gridTemplateColumns:`repeat(auto-fill,minmax(200px,1fr))`,justifyItems: `center`})}
+   ${mobile({gridTemplateColumns:`repeat(auto-fill,minmax(120px,1fr))`,justifyItems: `center`})}
+
+   
+
+
     overflow-y: hidden;
 `
 const Loader = styled.div`
@@ -37,10 +44,9 @@ useEffect(()=>{
   const getProducts = async ()=>{
 
     try{
-    
+      // https://mercwebsitebackend-1kn3.onrender.com
        const res = await axios.get(cat ? `https://mercwebsitebackend-1kn3.onrender.com/api/products?category=${cat}`:
-                                   `https://mercwebsitebackend-1kn3.onrender.com/api/products`);
-
+                                   `https://mercwebsitebackend-1kn3.onrender.com/api/products?new=true`);
 
      setProducts(res.data);
 
@@ -108,12 +114,12 @@ else{
       (
        cat ? filteredProducts.map((item)=>(
         <Product item={item} key={item.id}/>
-       )) : products.slice(0,8).map((item)=>(
+       )) : products.map((item)=>(
         <Product item={item} key={item.id}/>
        ))
       
       )
-      
+      // .slice(0,8)
       
     }
     </Container>

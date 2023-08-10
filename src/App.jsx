@@ -21,8 +21,6 @@ import { useSelector } from "react-redux";
  import "./admin/App.css";
  import AdminHome from "./admin/pages/home/AdminHome"; 
  import UserList from "./admin/pages/userList/UserList";
- import User from "./admin/pages/user/User";
- import NewUser from "./admin/pages/newUser/NewUser";
  import AdminProductList from "./admin/pages/productList/AdminProductList";
 import AdminProduct from "./admin/pages/product/AdminProduct";
  import NewProduct from "./admin/pages/newProduct/NewProduct";
@@ -67,7 +65,6 @@ return (
 
           <Route exact path="/adminhome" element={<AdminHome />}/>
           <Route path="/adminhome/users" element={<UserList />}/>
-          <Route path="/adminhome/newuser" element={<NewUser />}/>
           <Route path="/adminhome/products" element={<AdminProductList />}/>
           <Route path="/adminhome/product/:productId" element={<AdminProduct />}/>
           <Route path="/adminhome/newproduct" element={<NewProduct />}/>

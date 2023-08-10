@@ -19,7 +19,7 @@ export default function UserList() {
 
     useEffect(()=>{
   
-      getUsers(dispatch);
+      getUsers(dispatch).then((res)=>{console.log(res)}).catch((err)=>console.log(err))
   
     },[dispatch])
   

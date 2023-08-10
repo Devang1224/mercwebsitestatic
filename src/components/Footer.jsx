@@ -1,7 +1,7 @@
 import { Instagram, Pinterest, Twitter ,Facebook, MailOutline ,Room,Phone } from '@material-ui/icons'
 import React from 'react'
 import styled from 'styled-components'
-import { mobile,mobile2,tablet} from '../responsive'
+import { mobile,mobile2,mobile3,tablet} from '../responsive'
 import { Link } from 'react-router-dom'
 
 const Container = styled.div`
@@ -15,6 +15,8 @@ const Left = styled.div`
     display: flex;
     flex-direction: column;
     padding: 20px;
+    ${mobile3({fontSize:`10px`})}
+
 `
 
 const Logo=styled.h1`
@@ -29,6 +31,7 @@ const SocialContainer=styled.div`
 const SocialIcon =styled.div`
     width: 40px;
     height: 40px;
+    ${mobile3({width:"30px",height:"30px"})}
     border-radius: 50%;
     color:white;
     background-color: #${props=>props.color};
@@ -74,6 +77,7 @@ const Right = styled.div`
     flex:1;
     padding: 20px;
 ${mobile({backgroundColor:"#fff8f8"})}
+    ${mobile3({fontSize:`10px`})}
 
     
 `
@@ -143,10 +147,10 @@ const Footer = () => {
 
             <Title>Contact</Title>
             <ContactItem>
-                <Room style={{marginRight:"10px"}}/>622 Dixie Path , South Tobinchester 98336
+                <Room style={{marginRight:"10px"}}/>234 E 1st St Casper Wyoming 82601 United States
             </ContactItem>
             <ContactItem>
-              <Phone style={{marginRight:"10px"}}/>  +1 234 56 78
+              <Phone style={{marginRight:"10px"}}/>  +91 7837654658
             </ContactItem>
             <ContactItem>
               <MailOutline style={{marginRight:"10px"}}/>contact@xyz.dev

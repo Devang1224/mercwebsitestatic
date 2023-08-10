@@ -1,0 +1,25 @@
+.featuredContainer{
+    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    overflow-y: hidden;
+
+}
+
+@media screen and (max-width:640px)
+{
+  .featuredContainer{
+  grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+  justify-items: center
+  }
+
+}
+
+@media screen and (max-width:411px)
+{
+  .featuredContainer{
+  display:flex;
+  flex-wrap: wrap;
+  }
+
+}
