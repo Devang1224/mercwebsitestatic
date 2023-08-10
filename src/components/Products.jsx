@@ -13,11 +13,7 @@ const Container =styled.div`
      grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
    ${mobile2({gridTemplateColumns:`repeat(auto-fill,minmax(170px,1fr))`,justifyItems: `center`})}
    ${mobile4({padding:`5px`,gridTemplateColumns:`repeat(auto-fill,minmax(200px,1fr))`,justifyItems: `center`})}
-   ${mobile({gridTemplateColumns:`repeat(auto-fill,minmax(120px,1fr))`,justifyItems: `center`})}
-
-   
-
-
+   ${mobile({gridTemplateColumns:`repeat(auto-fill,minmax(100px,1fr))`,justifyItems: `center`})}
     overflow-y: hidden;
 `
 const Loader = styled.div`
@@ -28,6 +24,15 @@ const Loader = styled.div`
   flex-direction:column;
 
 `
+const Error = styled.p`
+  
+width:100%;
+font-size:20px;
+position: absolute;
+text-align: center;
+`
+
+
 
 
 
@@ -37,6 +42,7 @@ const Products = ({cat,filters,sort}) => {
 
 const[products,setProducts] = useState([]);
 const[filteredProducts,setFilteredProducts] = useState([]);
+const[error,setError] = useState("")
 
 
 useEffect(()=>{
@@ -45,14 +51,15 @@ useEffect(()=>{
 
     try{
       // https://mercwebsitebackend-1kn3.onrender.com
-       const res = await axios.get(cat ? `https://mercwebsitebackend-1kn3.onrender.com/api/products?category=${cat}`:
-                                   `https://mercwebsitebackend-1kn3.onrender.com/api/products?new=true`);
-
+       const res = await axios.get(cat ? `${process.env.REACT_APP_BASEURL}/products?category=${cat}`:
+                                   `${process.env.REACT_APP_BASEURL}/products?new=true`);
+     
      setProducts(res.data);
+
 
     }
    catch(err){
-
+    setError(err.response.data.message);
    }
 
   } 
@@ -67,7 +74,7 @@ useEffect(()=>{
 
   cat && setFilteredProducts(
 
-    products.filter(item=>Object.entries(filters).every(([key,value])=>item[key].includes(value))
+    products?.filter(item=>Object.entries(filters).every(([key,value])=>item[key].includes(value))
   
      )
   
@@ -79,14 +86,14 @@ useEffect(()=>{
 
 useEffect(()=>{
 
-if(sort==="newest")
+if(sort==="newest" && filteredProducts)
 {
   setFilteredProducts((prev)=>
     [...prev].sort((a,b)=>a.createdAt - b.createdAt)
   )
 }
 
-else if(sort === "asc")
+else if(sort === "asc" && filteredProducts.size)
 {
   setFilteredProducts((prev)=>
      [...prev].sort((a,b)=>a.price - b.price)
@@ -94,17 +101,18 @@ else if(sort === "asc")
 }
 
 else{
-  setFilteredProducts((prev)=>
+  filteredProducts.size && setFilteredProducts((prev)=>
      [...prev].sort((a,b)=>b.price - a.price)
   )
 }
 
 },[sort])
 
+
   return (
     <Container>
       {
-      (products && products.length === 0)
+      (products && products?.length === 0 && !error)
       ?
       <Loader>
         <CircularProgress /><br/>
@@ -119,9 +127,10 @@ else{
        ))
       
       )
-      // .slice(0,8)
       
     }
+
+    {error && <Error>{error}</Error>}
     </Container>
   )
 }

@@ -5,7 +5,7 @@ import Announcement from '../components/Announcement'
 import Products from '../components/Products'
 import Newsletter from '../components/NewsLetter'
 import Footer from '../components/Footer'
-import { mobile, mobile2, mobile3 } from '../responsive'
+import { mobile, mobile2, mobile3, mobile5 } from '../responsive'
 import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -16,6 +16,8 @@ const Container = styled.div`
 `
 const Title = styled.h1`
 margin: 20px;
+text-transform: uppercase;
+font-weight:100;
 `
 const FilterContainer = styled.div`
 display: flex;
@@ -35,6 +37,8 @@ font-weight: 600;
 margin-right: 20px;
 ${mobile({marginRight:"0px"})}
 ${mobile2({margin:"0px",fontSize:"15px"})}
+${mobile5({fontSize:"10px"})}
+
 
 
 `
@@ -74,6 +78,7 @@ const handleFilters = (e)=>{
 useEffect(() => {
   window.scrollTo(0, 0);
 }, []);
+
   return (
        
     <Container>

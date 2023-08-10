@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import {Badge} from "@material-ui/core"
 import {Search,ShoppingCartOutlined} from '@material-ui/icons'
@@ -6,6 +6,8 @@ import {mobile, mobile2} from '../responsive'
 import {useSelector,useDispatch} from 'react-redux'
 import { Link } from 'react-router-dom'
 import {logout}  from '../redux/apiCalls'
+import { useNavigate } from 'react-router-dom';
+
 
 //styled components
 const Container = styled.div`
@@ -42,12 +44,13 @@ const SearchContainer = styled.div`
 border: 0.5px solid lightgray;
 display: flex;
 align-items: center;
-margin-left: 25px;
+margin-left: 5px;
 padding: 5px;
 
 `
 const Input = styled.input`
   border: none;
+  outline:none;
 ${mobile({width:"50px"})}
 ${mobile2({width:"50px"})};
 
@@ -104,21 +107,24 @@ const user =  useSelector(state=>state.user.currentUser)
 const dispatch = useDispatch()
 const quantity = useSelector(state=>state.cart.quantity)
 const isLogin = useSelector((state)=>state.user.isLogin)
-
+const [search,setSearch] = useState("")
+const navigate = useNavigate();
 
 const handleClick = ()=>{
     logout(dispatch)
 }
 
+const handleChange =()=>{
+  navigate(`/products/${search}`)
+}
 
   return (
     <Container>
         <Wrapper>
             <Left>
-                <Language>EN</Language>
                 <SearchContainer>
-                   <Input placeholder='Search'/>
-                   <Search style={{color:"gray", fontSize: 16}}/>
+                   <Input placeholder='Search' onChange={(e)=>setSearch(e.target.value)}/>
+                   <Search style={{color:"gray", fontSize: 16,cursor:"pointer"}} onClick={handleChange}/>
                 </SearchContainer>
             </Left>
             <Center>

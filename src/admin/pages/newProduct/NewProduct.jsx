@@ -45,7 +45,7 @@ setCat(e.target.value.split(","));
 const handleFile = (e)=>{
 
   for(let i=0;i<e.target.files.length;i++)
-    { console.log(e.target.files[i]);
+    { 
       setFile((prev)=>[...prev,e.target.files[i]]);
     }
 }
@@ -86,7 +86,6 @@ await uploadTask.on('state_changed',
 
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
            setUrls((prev)=>[...prev,downloadURL])
-           console.log(downloadURL);
     });
   }
 );

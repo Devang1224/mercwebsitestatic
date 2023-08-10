@@ -14,6 +14,9 @@ import FeaturedProducts from '../components/featuredProducts/FeaturedProducts'
 
 
 export default function home() {
+
+
+
   return (
     <div>
       <Announcement/>

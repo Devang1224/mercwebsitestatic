@@ -105,3 +105,16 @@ return css`
       
 }
      
+export const mobile5 = (props)=>{
+     
+      return css`
+      
+      @media only screen and (max-width:369px)
+      {
+            ${props}
+      }
+      
+      `
+      
+}
+     

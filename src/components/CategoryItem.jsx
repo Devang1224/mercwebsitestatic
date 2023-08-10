@@ -26,10 +26,12 @@ height: 70vh;
 position: relative;
 
 
+
 &:hover ${Image}{
   transform: scale(1.1);
   
 }
+
 
 overflow: hidden;
 
@@ -56,6 +58,7 @@ const Title = styled.h1`
 text-align: center;
 color:white;
 margin-bottom: 20px;
+font-weight: 400;
 ${tablet1({
 fontSize:20
 
@@ -80,6 +83,27 @@ const Button = styled.button`
  color:grey;
  cursor:pointer;
  font-weight: 600;
+
+ border-radius: 5px;
+ /* position: relative;
+overflow: hidden; */
+/* z-index: 1; */
+
+
+ /* &::before{
+content: "";
+position: absolute;
+left:0;
+top:0;
+right:0;
+bottom: 0;
+background-color: red;
+z-index: -1;
+transform: scaleX(0);
+ } */
+
+
+
 `
 
 
