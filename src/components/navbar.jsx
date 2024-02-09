@@ -130,7 +130,7 @@ const handleChange =()=>{
             <Center>
               <Link to={'/'} style={{ textDecoration: 'none', color:'black' }}>
                 <Logo>
-                    MERC
+                    FashFlix
                 </Logo>
                </Link>
             </Center>

@@ -1,6 +1,5 @@
 import Home from "./pages/home"
 import ProductList from "./pages/ProductList";
-import Product from "./pages/Product";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
@@ -11,15 +10,12 @@ import {
   Route, Routes,
   redirect
  } from 'react-router-dom'
- import { useState } from "react";
+ import { Suspense, lazy, useState } from "react";
 import { useSelector } from "react-redux";
  import { Navigate } from "react-router-dom";
 
  // admin
-
-
  import "./admin/App.css";
- import AdminHome from "./admin/pages/home/AdminHome"; 
  import UserList from "./admin/pages/userList/UserList";
  import AdminProductList from "./admin/pages/productList/AdminProductList";
 import AdminProduct from "./admin/pages/product/AdminProduct";
@@ -28,8 +24,11 @@ import AdminProduct from "./admin/pages/product/AdminProduct";
  import { Redirect } from "react-router-dom";
 import FailedLogin from "./admin/pages/failedLogin/PageNotFound";
 import PageNotFound from "./admin/pages/failedLogin/PageNotFound";
+import Loader from "./components/Loader";
 
 
+const AdminHome = lazy(()=>import("./admin/pages/home/AdminHome"));
+const Product = lazy(()=>import("./pages/Product"));
 
 
 const App = () => {
@@ -49,7 +48,13 @@ return (
     <Route path="/" element={<Home/>}/>
     <Route path="/products/:category" element={<ProductList/>}/>
     <Route path="/products" element={<ProductList/>}/>
-    <Route path="/product/:id" element={<Product/>}/>
+    <Route path="/product/:id" 
+          element={
+            <Suspense fallback={<Loader/>}>
+               <Product/>
+            </Suspense>
+            }
+    />
     <Route path="/cart" element={<Cart/>}/>
     <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>}/>
     <Route path="/register" element={<Register/>}/>
@@ -63,7 +68,13 @@ return (
        isadmin && (
       <>
 
-          <Route exact path="/adminhome" element={<AdminHome />}/>
+          <Route exact 
+           path="/adminhome" 
+           element={
+           <Suspense fallback={<Loader/>}>
+             <AdminHome />
+           </Suspense>
+           }/>
           <Route path="/adminhome/users" element={<UserList />}/>
           <Route path="/adminhome/products" element={<AdminProductList />}/>
           <Route path="/adminhome/product/:productId" element={<AdminProduct />}/>

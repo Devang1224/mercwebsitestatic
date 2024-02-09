@@ -17,7 +17,7 @@ const Container =styled.div`
     overflow-y: hidden;
 `
 const Loader = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,13 +50,10 @@ useEffect(()=>{
   const getProducts = async ()=>{
 
     try{
-      // https://mercwebsitebackend-1kn3.onrender.com
+      
        const res = await axios.get(cat ? `${process.env.REACT_APP_BASEURL}/products?category=${cat}`:
                                    `${process.env.REACT_APP_BASEURL}/products?new=true`);
-     
      setProducts(res.data);
-
-
     }
    catch(err){
     setError(err.response.data.message);
@@ -65,14 +62,13 @@ useEffect(()=>{
   } 
   getProducts();
 
-
 },[cat,filters])
 
 // filters
 
 useEffect(()=>{
 
-  cat && setFilteredProducts(
+ setFilteredProducts(
 
     products?.filter(item=>Object.entries(filters).every(([key,value])=>item[key].includes(value))
   
@@ -93,7 +89,7 @@ if(sort==="newest" && filteredProducts)
   )
 }
 
-else if(sort === "asc" && filteredProducts.size)
+else if(sort === "asc")
 {
   setFilteredProducts((prev)=>
      [...prev].sort((a,b)=>a.price - b.price)
@@ -101,10 +97,12 @@ else if(sort === "asc" && filteredProducts.size)
 }
 
 else{
-  filteredProducts.size && setFilteredProducts((prev)=>
+   setFilteredProducts((prev)=>
      [...prev].sort((a,b)=>b.price - a.price)
   )
 }
+
+
 
 },[sort])
 
@@ -119,10 +117,10 @@ else{
         Loading Products...
         </Loader>
       :
-      (
+      !error&&(
        cat ? filteredProducts.map((item)=>(
         <Product item={item} key={item.id}/>
-       )) : products.map((item)=>(
+       )) : filteredProducts.map((item)=>(
         <Product item={item} key={item.id}/>
        ))
       

@@ -13,11 +13,8 @@ const [featuredProducts,setFeaturedProducts] = useState([]);
 
 const getFeaturedProducts = async()=>{
     try{
-       
         const res = await userRequest.get("/products/featuredProducts");
-        
         setFeaturedProducts(res.data);
-         
     }
     catch(err)
     {

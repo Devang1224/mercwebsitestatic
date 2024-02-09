@@ -13,7 +13,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Container = styled.div`
-    width: 100vw;
     height: 100vh;
     background: linear-gradient(rgba(255,255,255,0.5),
                                 rgba(255,255,255,0.5)),

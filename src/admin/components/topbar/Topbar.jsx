@@ -25,7 +25,7 @@ const handleClick =()=>{
       <div className="topbarWrapper">
         <div className="topLeft">
         <Link to={"/adminhome"} style={{textDecoration:"none"}}>
-            <span className="logo">Mercadmin</span>
+            <span className="logo">Admin Pannel</span>
         </Link>
         </div>
         
@@ -43,7 +43,6 @@ const handleClick =()=>{
           </div>
           <button className="logoutButton" onClick={handleClick}>LogOut</button>
 
-          <img src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="topAvatar" />
 
         </div>
       </div>
