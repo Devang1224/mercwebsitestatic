@@ -30,10 +30,10 @@ getFeaturedProducts()
 },[])
 
   return (
-   <div class="featuredContainer">
+   <div className="featuredContainer">
     {
-        featuredProducts.map((item)=>
-         <Product item={item} key={item.id}/>
+        featuredProducts.map((item,index)=>
+         <Product item={item} key={index}/>
         )
     }
 

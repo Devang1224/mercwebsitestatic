@@ -103,7 +103,7 @@ const Footer = () => {
 
         <Left>
 
-          <Logo>MERC.</Logo>
+          <Logo>FashFlix</Logo>
           <Desc>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                 Expedita inventore aspernatur voluptates ducimus architecto corporis 
                 cum nostrum sunt magnam quae, nobis labore aliquid eos amet hic unde est,
